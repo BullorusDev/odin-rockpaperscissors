@@ -1,4 +1,5 @@
-let score = 0;
+let playerScore = 0;
+let computerScore = 0;
 function getComputerChoice() {
     const selection =  Math.floor(Math.random() * 3) + 1;
     let item;
@@ -21,19 +22,22 @@ function playRound(playerSelection, computerChoice) {
         console.log("It's a tie!");
     } else if (playerSelection === "ROCK" && computerChoice === "PAPER") {
         console.log("You chose Rock but computer chose Paper so YOU LOSE");
+        computerScore ++;
     } else if (playerSelection === "ROCK" && computerChoice === "SCISSORS") {
         console.log("You chose Rock and computer chose Scissors so YOU WIN");
-        score ++;
+        playerScore ++;
     } else if (playerSelection === "PAPER" && computerChoice === "ROCK") {
         console.log("You chose Paper and computer chose Rock so YOU WIN");
-        score ++;
+        playerScore ++;
     } else if (playerSelection === "PAPER" && computerChoice === "SCISSORS") {
         console.log("You chose Paper but computer chose Scissors so YOU LOSE");
+        computerScore ++;
     } else if (playerSelection === "SCISSORS" && computerChoice === "PAPER") {
         console.log("You chose Scissors and computer chose Paper so YOU WIN");
-        score ++;
+        playerScore ++;
     } else if (playerSelection === "SCISSORS" && computerChoice === "ROCK") {
         console.log("You chose Scissors but computer chose Rock so YOU LOSE");
+        computerScore ++;
     } else {
         console.log('Something went wrong, please try again.');
     }
@@ -44,8 +48,15 @@ function playGame() {
         const playerSelection = prompt('Rock, Paper, or Scissors?').toUpperCase();
         const computerChoice = getComputerChoice().toUpperCase();
         playRound(playerSelection, computerChoice);
+        console.log(`Score: Computer - ${computerScore}, You - ${playerScore}`);
     } 
-    console.log(`Congratulations! Your score is ${score}!`);
+    if (playerScore > computerScore) {
+        alert(`Congratulations! You beat the computer with a score of ${playerScore} to ${computerScore}!`);
+    } else if (computerScore > playerScore) {  
+        alert(`Womp womp! You lost to the computer with a score of ${playerScore} to ${computerScore}.`);
+    } else {
+        alert(`It's a tie! You and the computer both had a score of ${computerScore}!`);
+    }
 }
 
 playGame();
