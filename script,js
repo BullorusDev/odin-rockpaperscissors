@@ -1,0 +1,51 @@
+let score = 0;
+function getComputerChoice() {
+    const selection =  Math.floor(Math.random() * 3) + 1;
+    let item;
+    switch (selection) {
+        case 1:
+            item = 'Rock';
+            break;
+        case 2:
+            item = 'Paper';
+            break;
+        case 3:
+            item = 'Scissors'
+            break;
+    }
+    return item;
+}
+
+function playRound(playerSelection, computerChoice) {
+    if (playerSelection === computerChoice) {
+        console.log("It's a tie!");
+    } else if (playerSelection === "ROCK" && computerChoice === "PAPER") {
+        console.log("You chose Rock but computer chose Paper so YOU LOSE");
+    } else if (playerSelection === "ROCK" && computerChoice === "SCISSORS") {
+        console.log("You chose Rock and computer chose Scissors so YOU WIN");
+        score ++;
+    } else if (playerSelection === "PAPER" && computerChoice === "ROCK") {
+        console.log("You chose Paper and computer chose Rock so YOU WIN");
+        score ++;
+    } else if (playerSelection === "PAPER" && computerChoice === "SCISSORS") {
+        console.log("You chose Paper but computer chose Scissors so YOU LOSE");
+    } else if (playerSelection === "SCISSORS" && computerChoice === "PAPER") {
+        console.log("You chose Scissors and computer chose Paper so YOU WIN");
+        score ++;
+    } else if (playerSelection === "SCISSORS" && computerChoice === "ROCK") {
+        console.log("You chose Scissors but computer chose Rock so YOU LOSE");
+    } else {
+        console.log('Something went wrong, please try again.');
+    }
+}
+
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Rock, Paper, or Scissors?').toUpperCase();
+        const computerChoice = getComputerChoice().toUpperCase();
+        playRound(playerSelection, computerChoice);
+    } 
+    console.log(`Congratulations! Your score is ${score}!`);
+}
+
+playGame();
