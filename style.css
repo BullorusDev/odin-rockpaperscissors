@@ -1,0 +1,14 @@
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+.btn {
+    flex: 1;
+    text-align: center;
+}
+.score-container {
+    display: flex;
+    justify-content: center;
+}
